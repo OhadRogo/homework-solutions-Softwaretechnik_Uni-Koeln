@@ -1,14 +1,19 @@
 package src.HM03_Code;
 
+import java.util.List;
+
 public class ExerciseGroup {
     private String groupId;
     private int maxCapacity;
     private String timeSlot;
+
+
     public ExerciseGroup(String groupId, int maxCapacity, String timeSlot) {
         this.groupId = groupId;
         this.maxCapacity = maxCapacity;
         this.timeSlot = timeSlot;
     }
+
 
     //getters
 

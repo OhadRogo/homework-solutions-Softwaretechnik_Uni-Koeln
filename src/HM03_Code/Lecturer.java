@@ -11,8 +11,13 @@ public class Lecturer extends User{
         super(userID, firstName, lastName);
         this.managedCourses = new ArrayList<>();
     }
-
-    public void addCourse(Course course) {
+    //manage Course methode
+    public void manageCourse(Course course) {
         managedCourses.add(course);
+    }
+
+    //getters
+    public List<Course> getManagedCourses() {
+        return managedCourses;
     }
 }
