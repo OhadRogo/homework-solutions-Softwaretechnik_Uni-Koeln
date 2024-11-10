@@ -8,7 +8,7 @@ public class ExerciseGroupManagerTest {
 
     @Test
     void testTotalStudentsLessThanOrEqualToZero() {
-        // Case: totalStudents <= 0
+        // Case: totalStudents <=0
         assertEquals(0, manager.checkGroupCapacities(0, 5, 2));
         assertEquals(0, manager.checkGroupCapacities(-10, 5, 2));
     }
@@ -21,14 +21,14 @@ public class ExerciseGroupManagerTest {
 
     @Test
     void testExcessStudents() {
-        // Case: More students than capacity, expect excess
+        // Case: More studentsthan capacity,expect excess
         assertEquals(5, manager.checkGroupCapacities(15, 5, 2));
     }
 
     @Test
     void testExactCapacity() {
         // Case: Total students exactly match capacity, expect 0 excess
-        assertEquals(0, manager.checkGroupCapacities(10, 5, 2));
+        assertEquals(0, manager.checkGroupCapacities(10,5,2));
     }
 
     @Test

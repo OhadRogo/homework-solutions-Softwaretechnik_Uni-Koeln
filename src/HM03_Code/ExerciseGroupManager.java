@@ -9,11 +9,11 @@ public class ExerciseGroupManager {
      * @param availableGroups total number of groups available for assignment.
      * @return The number of students that must be assigned with the current number of
      *         registered students and available groups. Returns 0 if totalStudents <= 0.
-     * @throws IllegalArgumentException if groupSize or number of groups is zero or negative.
+     * @throws IllegalArgumentException if groupSize or number of groups is zero or negative : if<=0.
      */
     public int checkGroupCapacities(int totalStudents, int groupSize, int availableGroups) {
         if (groupSize <= 0 || availableGroups <= 0) {
-            throw new IllegalArgumentException("Group size and number of groups must be positive.");
+            throw new IllegalArgumentException("Group size & number of groups must be positive.");
         }
         if (totalStudents <= 0) {
             return 0;
