@@ -1,6 +1,6 @@
 package src.HM03_Code;
 
-public class Main {
+public class MainTask1 {
     public static void main(String[] args) {
         // Example Usage
         Student student1 = new Student("S001", "Alice", "Smith");
