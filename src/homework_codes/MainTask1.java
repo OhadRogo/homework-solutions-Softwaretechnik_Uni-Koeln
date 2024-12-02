@@ -1,4 +1,4 @@
-package src.HM03_Code;
+package src.homework_codes;
 
 public class MainTask1 {
     public static void main(String[] args) {

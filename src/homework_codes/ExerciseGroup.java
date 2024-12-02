@@ -1,6 +1,4 @@
-package src.HM03_Code;
-
-import java.util.List;
+package src.homework_codes;
 
 public class ExerciseGroup {
     private String groupId;

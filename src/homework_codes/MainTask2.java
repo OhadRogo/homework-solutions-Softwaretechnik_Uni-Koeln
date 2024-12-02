@@ -1,4 +1,4 @@
-package src.HM03_Code;
+package src.homework_codes;
 
 import java.util.List;
 
