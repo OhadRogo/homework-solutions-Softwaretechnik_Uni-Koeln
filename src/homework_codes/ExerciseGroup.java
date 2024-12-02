@@ -1,4 +1,4 @@
-package src.homeworkCodes;
+package src.homework_codes;
 
 public class ExerciseGroup {
     private String groupId;

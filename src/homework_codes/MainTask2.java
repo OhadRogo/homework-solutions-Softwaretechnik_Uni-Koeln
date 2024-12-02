@@ -1,4 +1,4 @@
-package src.homeworkCodes;
+package src.homework_codes;
 
 import java.util.List;
 
