@@ -1,4 +1,4 @@
-package src.homework_codes;
+package src.homeworkCodes;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.params.ParameterizedTest;

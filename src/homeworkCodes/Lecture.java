@@ -1,4 +1,4 @@
-package src.homework_codes;
+package src.homeworkCodes;
 
 public class Lecture extends Course{
 
