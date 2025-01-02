@@ -10,7 +10,7 @@ public class Student {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "mat_nr")
+    @Column(name = "matNr") // Matches the database column name
     private String matNr;
 
     @Column(name = "subject")
