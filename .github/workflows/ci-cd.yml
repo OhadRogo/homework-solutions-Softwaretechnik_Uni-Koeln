@@ -3,47 +3,28 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - main  # Trigger workflow on push to the main branch
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Java environment
-      - name: Set up Java 23
+      # Step 2: Set up Java 23
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '23'
           distribution: 'temurin'
+          java-version: '23'
 
-      # Step 3: Install Maven dependencies
-      - name: Install Maven dependencies
-        run: mvn install
+      # Step 3: Build the project with Maven
+      - name: Build with Maven
+        run: mvn -B package --file "IntelliJ IDEA/homework-solutions-Softwaretechnik-24-25-Uni-Koeln/homework_7/pom.xml"
 
-      # Step 4: Run JUnit tests
+      # Step 4: Run unit tests
       - name: Run tests
-        run: mvn test
-
-      # Step 5: Generate test coverage report using JaCoCo
-      - name: Generate JaCoCo coverage report
-        run: mvn jacoco:report
-
-      # Step 6: Build Docker image
-      - name: Build Docker image
-        run: docker build -t my-docker-image:latest .
-
-      # Step 7: Run Docker container
-      - name: Run Docker container
-        run: docker run -d -p 8080:8080 my-docker-image:latest
-
-      # Step 9: Upload coverage report as artifact
-      - name: Upload test coverage report
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: target/site/jacoco/
+        run: mvn -B test --file "IntelliJ IDEA/homework-solutions-Softwaretechnik-24-25-Uni-Koeln/homework_7/pom.xml"
