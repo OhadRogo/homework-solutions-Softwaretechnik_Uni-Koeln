@@ -10,37 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the repository
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # Step 1: Check out the latest code
+    - name: Check out code
+      uses: actions/checkout@v3
 
-      # Set up Java
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '23'
+    # Step 2: Set up Java environment
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '23'
+        distribution: 'temurin'
 
-      # Navigate to the homework_7 directory and install dependencies
-      - name: Install dependencies
-        run: |
-          cd homework_7
-          mvn dependency:resolve
+    # Step 3: Install Maven dependencies
+    - name: Install dependencies
+      run: mvn install
 
-      # Build the project
-      - name: Build project
-        run: |
-          cd homework_7
-          mvn clean package
+    # Step 4: Run JUnit tests
+    - name: Run tests
+      run: mvn test
 
-      # Run unit tests
-      - name: Run unit tests
-        run: |
-          cd homework_7
-          mvn test
+    # Step 5: Generate test coverage report using JaCoCo
+    - name: Generate coverage report
+      run: mvn jacoco:report
 
-      # Generate JaCoCo coverage report
-      - name: Generate JaCoCo report
-        run: |
-          cd homework_7
-          mvn jacoco:report
+    # Step 6: Upload JaCoCo coverage report as artifact
+    - name:
