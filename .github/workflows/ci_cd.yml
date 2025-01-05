@@ -21,18 +21,18 @@ jobs:
           distribution: 'temurin'
           java-version: '23'
 
-      # Install dependencies and build project
+      # Navigate to the project directory and install dependencies
       - name: Install dependencies
-        run: mvn dependency:resolve
-        
+        run: cd homework_7 && mvn dependency:resolve
+
+      # Build the project
       - name: Build project
         run: cd homework_7 && mvn clean package
 
-
       # Run tests
       - name: Run unit tests
-        run: mvn test
+        run: cd homework_7 && mvn test
 
       # Generate test coverage report
       - name: Generate JaCoCo report
-        run: mvn jacoco:report
+        run: cd homework_7 && mvn jacoco:report
