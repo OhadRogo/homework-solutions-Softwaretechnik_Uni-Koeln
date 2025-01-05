@@ -3,36 +3,37 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - main  # Trigger workflow on push to the main branch
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use an Ubuntu environment for the job
 
     steps:
-      # Check out the repository
+      # Step 1: Checkout code from repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Java
+      # Step 2: Set up Java 23
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: 'temurin'  # Use the Temurin distribution of Java
+          java-version: '23'       # Set Java version to 23
 
-      # Navigate to the project directory and install dependencies
-      - name: Install dependencies
-        run: cd homework_7 && mvn dependency:resolve
+      # Step 3: Build the project with Maven
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml  # Build the project using Maven
 
-      # Build the project
-      - name: Build project
-        run: cd homework_7 && mvn clean package
+      # Step 4: Run unit tests using Maven
+      - name: Run tests
+        run: mvn test
 
-      # Run tests
-      - name: Run unit tests
-        run: cd homework_7 && mvn test
+  deploy:
+    needs: build  # Run deploy job only if the build job succeeds
+    runs-on: ubuntu-latest
 
-      # Generate test coverage report
-      - name: Generate JaCoCo report
-        run: cd homework_7 && mvn ja
+    steps:
+      # Step 5: Deploy to staging environment
+      - name: Deploy to Staging
+        run: echo "Deploying to staging environment..."  # Placeholder for actual deployment
