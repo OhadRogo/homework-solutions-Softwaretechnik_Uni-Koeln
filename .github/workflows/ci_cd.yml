@@ -3,28 +3,31 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - main  # Trigger workflow on pushes to the main branch
+      - main
 
 jobs:
   build-and-test:
     name: Build and Test with Coverage
-    runs-on: ubuntu-latest  # Run on the latest Ubuntu release
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3  # Checkout the latest commit on main
+        uses: actions/checkout@v3
 
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '23'  # Set up Java 23 distribution
+          java-version: '23'
+
+      - name: Navigate to Project Directory
+        run: cd homework_7  # Change to the directory containing pom.xml
 
       - name: Install Dependencies
-        run: mvn dependency:resolve  # Install all Maven dependencies
+        run: mvn dependency:resolve
 
       - name: Run Tests
-        run: mvn test  # Run all JUnit tests
+        run: mvn test
 
       - name: Generate Test Coverage Report
-        run: mvn jacoco:report  # Generate a test coverage report using JaCoCo
+        run: mvn jacoco:report
