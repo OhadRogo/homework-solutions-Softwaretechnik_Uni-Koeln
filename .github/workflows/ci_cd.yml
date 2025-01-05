@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '23'
+          java-version: '17'
 
       # Navigate to the project directory and install dependencies
       - name: Install dependencies
@@ -35,4 +35,4 @@ jobs:
 
       # Generate test coverage report
       - name: Generate JaCoCo report
-        run: cd homework_7 && mvn jacoco:report
+        run: cd homework_7 && mvn ja
