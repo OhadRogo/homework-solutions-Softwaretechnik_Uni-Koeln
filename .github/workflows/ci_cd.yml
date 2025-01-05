@@ -3,28 +3,35 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - main  # Trigger workflow on pushes to the `main` branch
   pull_request:
     branches:
-      - main
+      - main  # Trigger workflow on pull requests to the `main` branch
 
 jobs:
   build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
-
-      - name: Navigate to Project Directory
-        run: cd homework_7
+          java-version: '11'  # Adjust if your project uses a different version
 
       - name: Build with Maven
         run: mvn clean install
+
+      - name: Run Tests
+        run: mvn test
+
+  deploy:
+    name: Docker Build and Deploy
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Staging
+        run: echo "Deploying to staging environment..."
