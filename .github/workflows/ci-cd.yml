@@ -1,0 +1,46 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Java
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '23'
+
+      # Navigate to the homework_7 directory and install dependencies
+      - name: Install dependencies
+        run: |
+          cd homework_7
+          mvn dependency:resolve
+
+      # Build the project
+      - name: Build project
+        run: |
+          cd homework_7
+          mvn clean package
+
+      # Run unit tests
+      - name: Run unit tests
+        run: |
+          cd homework_7
+          mvn test
+
+      # Generate JaCoCo coverage report
+      - name: Generate JaCoCo report
+        run: |
+          cd homework_7
+          mvn jacoco:report
