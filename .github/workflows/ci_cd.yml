@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -6,28 +6,32 @@ on:
       - main
 
 jobs:
-  build-and-test:
-    name: Build and Test with Coverage
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      # Check out the repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
+      # Set up Java
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '23'
 
-      - name: Navigate to Project Directory
-        run: cd homework_7  # Change to the directory containing pom.xml
-
-      - name: Install Dependencies
+      # Install dependencies and build project
+      - name: Install dependencies
         run: mvn dependency:resolve
 
-      - name: Run Tests
+      - name: Build project
+        run: mvn clean package
+
+      # Run tests
+      - name: Run unit tests
         run: mvn test
 
-      - name: Generate Test Coverage Report
+      # Generate test coverage report
+      - name: Generate JaCoCo report
         run: mvn jacoco:report
